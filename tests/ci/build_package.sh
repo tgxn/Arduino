@@ -7,7 +7,7 @@ set -ev
 root=$(git rev-parse --show-toplevel)
 tag=$ESP8266_ARDUINO_RELEASE_TAG
 
-export PKG_URL=https://github.com/esp8266/Arduino/releases/download/$tag/esp8266-$tag.zip
+export PKG_URL=https://github.com/tgxn/Arduino/releases/download/$tag/esp8266-$tag.zip
 export DOC_URL=https://arduino-esp8266.readthedocs.io/en/$tag/
 
 if [ -z "$CI_GITHUB_API_KEY" ]; then
