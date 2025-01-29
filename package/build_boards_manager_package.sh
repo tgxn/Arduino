@@ -6,7 +6,7 @@ if [ ! -z "${manualversion}" ]; then
     ver=${manualversion}
     plain_ver=${ver}
     visiblever=${ver}
-    [ -z "${REMOTE_URL}" ] && REMOTE_URL=https://github.com/esp8266/Arduino/releases/download
+    [ -z "${REMOTE_URL}" ] && REMOTE_URL=https://github.com/tgxn/Arduino/releases/download
     echo "manual version: ver=${ver} plain_ver=${plain_ver} visiblever=${visiblever}"
 
 else
@@ -157,7 +157,7 @@ if [ ! -z "${CI_GITHUB_API_KEY}" ]; then
     curl_gh_token_arg=(-H "Authorization: token ${CI_GITHUB_API_KEY}")
 fi
 # Get previous release name
-curl --silent "${curl_gh_token_arg[@]}" https://api.github.com/repos/esp8266/Arduino/releases > releases.json
+curl --silent "${curl_gh_token_arg[@]}" https://api.github.com/repos/tgxn/Arduino/releases > releases.json
 # Previous final release (prerelase == false)
 prev_release=$(jq -r '. | map(select(.draft == false and .prerelease == false)) | sort_by(.created_at | - fromdateiso8601) | .[0].tag_name' releases.json)
 # Previous release (possibly a pre-release)
@@ -175,7 +175,7 @@ base_ver=${prev_any_release}
 # Download previous release
 echo "Downloading base package: ${base_ver}"
 old_json=package_esp8266com_index_stable.json
-curl -L -o ${old_json} "https://github.com/esp8266/Arduino/releases/download/${base_ver}/package_esp8266com_index.json"
+curl -L -o ${old_json} "https://github.com/tgxn/Arduino/releases/download/${base_ver}/package_esp8266com_index.json"
 new_json=package_esp8266com_index.json
 
 set +e
